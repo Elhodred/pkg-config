@@ -208,6 +208,9 @@ if test "x$with_internal_glib" = xyes; then
   GLIB_CFLAGS='-I$(top_srcdir)/glib -I$(top_srcdir)/glib/glib \
     -I$(top_builddir)/glib/glib'
   GLIB_LIBS='$(top_builddir)/glib/glib/libglib-2.0.la'
+  if test "x`uname -s`" = xDarwin; then
+    GLIB_LIBS='$(top_builddir)/glib/glib/libglib-2.0.la -framework Carbon -framework CoreFoundation'
+  fi
   AC_CONFIG_SUBDIRS([glib])
 else
   AC_MSG_RESULT([no])
